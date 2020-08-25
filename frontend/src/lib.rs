@@ -23,13 +23,15 @@ fn update(msg: Msg, model: &mut Model, _orders: &mut impl Orders<Msg>) {
 }
 
 fn view(model: &Model) -> Node<Msg> {
-    let tasks: Vec<Node<Msg>> = model
-        .tasks
-        .iter()
-        .map(|t| li![{ t.attributes.title.clone() }])
-        .collect();
-
-    h1![{ "tasks" }, ul![tasks,],]
+    h1![
+        "Tasks",
+        ul![
+            model
+                .tasks
+                .iter()
+                .map(|t| li![ t.attributes.title.clone() ])
+        ],
+    ]
 }
 
 async fn fetch_drills() -> Option<Msg> {
